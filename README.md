@@ -8,9 +8,9 @@
 
 ## Team Members
 
-William Wyatt LeMaster
-Jonathan Pitts
-Krystal Lin
+William Wyatt LeMaster  
+Jonathan Pitts  
+Krystal Lin  
 Mike Blakley
 
 
