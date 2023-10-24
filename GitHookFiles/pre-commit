@@ -8,4 +8,7 @@
 # To enable this hook, rename this file to "pre-commit".
 
 #test
-echo "Running Git Hook"
+echo "-------Running Git Hook-------"
+bandit -a vuln -r . -f csv -o BanditScanResults.csv
+echo "Bandit Scan Complete, Security Weaknesses are in BanditScanResults.csv"
+echo "------------------------------"
