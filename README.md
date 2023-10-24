@@ -13,4 +13,9 @@ Jonathan Pitts
 Krystal Lin  
 Mike Blakley
 
+### Task Breakdown
+Git Hooks - Jonathan Pitts
+Integrate Fuzz - William LeMaster (3 methods) / Mike Blakley (2 methods)
+Integrate Forensics - Krystal Lin (3 methods) / Mike Blakley (2 methods)
+
 
