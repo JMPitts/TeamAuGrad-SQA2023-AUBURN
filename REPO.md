@@ -7,3 +7,5 @@ The first lesson I learned was that git hooks are not uploaded to the repo with 
 ## Fuzz
 
 ## Forensics
+
+- Created a logger implementation similar to Workshop 8, but made the dated file name dynamic to always use the current date rather than a hard coded date.
