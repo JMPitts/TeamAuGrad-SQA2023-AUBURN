@@ -10,6 +10,7 @@ import os
 import pandas as pd 
 import numpy as np
 import json
+import logger
 from sarif_om import *
 from jschema_to_python.to_json import to_json
 
@@ -68,6 +69,7 @@ def getYAMLFiles(path_to_dir):
            if(os.path.exists(full_p_file)):
              if (full_p_file.endswith( constants.YML_EXTENSION  )  or full_p_file.endswith( constants.YAML_EXTENSION  )  ):
                valid_.append(full_p_file)
+    log.info('scanner.getYAMLFiles(): YAML file paths found on dir_path: %s', valid_)
     return valid_ 
 
 def isValidUserName(uName): 
@@ -632,6 +634,7 @@ def scanDockerSock(path_script ):
     return dic  
 
 def runScanner(dir2scan):
+    log.info('scanner.runScanner(): Scanning directory: %s', dir2scan)
     all_content   = [] 
     all_yml_files = getYAMLFiles(dir2scan)
     val_cnt       = 0 
@@ -1005,6 +1008,7 @@ def scanForUnconfinedSeccomp(path_script ):
     return dic  
 
 if __name__ == '__main__':
+    log = logger.createLoggerObj()
     #provide directory to scan
     dir2scan = r'C:\Users\..'
     a,b = runScanner(dir2scan)

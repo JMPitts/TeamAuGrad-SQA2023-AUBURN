@@ -44,7 +44,7 @@ def getCountFromAnalysis(ls_):
         helm_flag      = tup_[22]
 
         list2ret.append(  ( dir_name, script_name, within_sec_cnt, len(taint_secret), len(privilege_dic), len(http_dict), len(secuContextDic), len(nSpaceDict), len(absentResoDict), len(rollUpdateDic), len(netPolicyDict), len(pidfDict), len(ipcDict), len(dockersockDic), len(hostNetDict), len(cap_sys_dic), len(host_alias_dic), len(allow_priv_dic), len(unconfined_dic), len(cap_module_dic) , k8s_flag, helm_flag  )  )
-    log.info('getCountFromAnalysis(): list of counts: %s', list2ret)
+    log.info('main.getCountFromAnalysis(): list of counts: %s', list2ret)
     return list2ret
 
 
@@ -55,13 +55,14 @@ def main(directory: Path = typer.Argument(..., exists=True, help="Absolute path 
 
     """
     content_as_ls, sarif_json   = scanner.runScanner( directory )
-    log.info('main(): scanned content %s', content_as_ls)
+    log.info('main.main(): scanned content_as_ls: %s', content_as_ls)
+    log.info('main.main(): scanned sarif_json: %s', sarif_json)
     
     with open("SLIKUBE.sarif", "w") as f:
       f.write(sarif_json)
 
     df_all          = pd.DataFrame( getCountFromAnalysis( content_as_ls ) )
-    log.info('main(): creating dataFrame: %s', df_all)
+    log.info('main.main(): creating dataFrame: %s', df_all)
     outfile = Path(directory, "slikube_results.csv")
 
     df_all.to_csv( outfile, header= constants.CSV_HEADER , index=False, encoding= constants.CSV_ENCODING )
