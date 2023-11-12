@@ -14,6 +14,7 @@ import pathlib as pl
 import re
 import subprocess
 import os
+import logger
 
 #update basepath
 base_path = r" "
@@ -136,6 +137,7 @@ def readYAMLAsStr( path_script ):
     yaml_as_str = constants.YAML_SKIPPING_TEXT
     with open( path_script , constants.FILE_READ_FLAG) as file_:
         yaml_as_str = file_.read()
+        log.info('parser.readYAMLAsStr(): reading YAML from path_script as string: %s', yaml_as_str)
     return yaml_as_str
 
 # This function checks whether our parser throws an exception for reading the YAML file. 
@@ -143,6 +145,7 @@ def checkParseError( path_script ):
     flag = True
     with open(path_script, constants.FILE_READ_FLAG) as yml:
         yaml = ruamel.yaml.YAML()
+        log.info('parser.checkParseError(): reading YAML from path_script: %s', yaml)
         try:
             for dictionary in yaml.load_all(yml):
                 pass
@@ -161,6 +164,7 @@ def loadMultiYAML( script_ ):
     dicts2ret = []  
     with open(script_, constants.FILE_READ_FLAG  ) as yml_content :
         yaml = ruamel.yaml.YAML()
+        log.info('parser.loadMultiYAML(): reading YAML from script_: %s', yaml)
         yaml.default_flow_style = False      
         try:
             for d_ in yaml.load_all(yml_content) :                
@@ -203,8 +207,9 @@ def count_initial_comment_line (filepath):
     initial_comment_line = 0
     comment_found = False
     # calculates initial line before the comments begin in the file such as empty lines, '---'
-    with open(filepath, constants.FILE_READ_FLAG  ) as yamlfile :       
+    with open(filepath, constants.FILE_READ_FLAG  ) as yamlfile : 
         textfile = yamlfile.read()
+        log.info('parser.count_initial_comment_line(): reading YAML from filepath: %s', textfile)      
         for line in textfile.split('\n'):
             if line.startswith('#'):
                 comment_found = True
@@ -414,5 +419,6 @@ def getSingleDict4MultiDocs( lis_dic ):
 
 
 if __name__=='__main__':
+    log = logger.createLoggerObj()
     yaml_path = pl.Path(base_path,'test.yaml')
     dic_lis   = loadMultiYAML(yaml_path)
