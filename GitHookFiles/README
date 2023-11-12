@@ -4,3 +4,5 @@ To add the Git Hook to your local repo, copy pre-commit to .git/hooks/
 
 From this directory (GitHookFiles):
 cp pre-commit ../.git/hooks/
+
+BanditScanResults.csv will appear in the main project directory.
