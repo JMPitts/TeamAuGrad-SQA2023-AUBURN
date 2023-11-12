@@ -10,12 +10,11 @@
 
 William Wyatt LeMaster  
 Jonathan Pitts  
-Krystal Lin  
 Mike Blakley
 
 ### Task Breakdown
 Setup Github / Git Hooks - Jonathan Pitts  
-Integrate Fuzz - William LeMaster (3 methods) / Mike Blakley (2 methods)   
-Integrate Forensics - Krystal Lin (3 methods) / Mike Blakley (2 methods)   
+Integrate Fuzz - William LeMaster
+Integrate Forensics - Mike Blakley   
 
 
