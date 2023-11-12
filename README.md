@@ -14,7 +14,7 @@ Mike Blakley
 
 ### Task Breakdown
 Setup Github / Git Hooks - Jonathan Pitts  
-Integrate Fuzz - William LeMaster
+Integrate Fuzz - William LeMaster  
 Integrate Forensics - Mike Blakley   
 
 
