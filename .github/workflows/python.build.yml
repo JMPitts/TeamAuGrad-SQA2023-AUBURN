@@ -34,4 +34,8 @@ jobs:
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run integration and taint-related tests 
       run: |
-        python TEST_PARSING.py  
+        python TEST_PARSING.py
+
+    - name: Fuzzing methods to find errors.
+      run: |
+        python fuzz.py
