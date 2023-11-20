@@ -1,34 +1,23 @@
 
 ## fuzzer to fuzz methods in parser.py
 import parser
-import logger
 import random 
 
-def getNaughtyLine():
-        f= open("blns.json", "r")
-        lines = f.readlines()
-        randLine = random.randint(0,515)
-        return lines[randLine]
+
 
 def getJunk(): # returns a random datatype with a random value. 
 
-    randValue = random.randint(1,4)
+    randValue = random.randint(1,3)
 
     if (randValue == 1 ):
-        f= open("blns.json", "r")
-        lines = f.readlines()
-        randLine = random.randint(0,515)
-        return lines[randLine]
-
-    if (randValue == 2 ):
         randomInt = random.randint(0,100)
         return (randomInt)
 
-    if (randValue == 3 ):
+    if (randValue == 2 ):
         randomfloat = round(random.uniform(0,100),3)
         return (randomfloat)
 
-    if (randValue == 4 ):
+    if (randValue == 3 ):
         return (None)
 
 
@@ -44,7 +33,7 @@ def fuzzWeirdYAML():
 
     if (randValue == 2 ):
         randomInt = random.randint(0,100)
-        return (randomInt)
+        return (getJunk)
    
 
 
@@ -68,79 +57,43 @@ def fuzzKeyMiner():     #Creates a randomly nested dictionary with bad values.
 
 
 def simpleFuzzer():
-
+    errorList = []
     for i in range(5):
-
-
-        errorList = []
+ 
         try:
             weirdyaml = fuzzWeirdYAML()
             weirdyaml_result = parser.checkIfWeirdYAML(weirdyaml)
-            print("\n1. Fuzzing checkIfWeirdYAML with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(weirdyaml_result) , "\n")
         except Exception as e:
-            errorList.append("checkIfWeirdYAML: " + str(e))
-            print("\n1. Fuzzing checkIfWeirdYAML with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
+            errorList.append("checkIfWeirdYAMLwith input of "+ str(weirdyaml) + "  ERROR IS:   " +   str(e))
         
-        
-        errorList2 = []
         try:
-            print("\n\n2. Fuzzing getValuesRecursively with randomly sized nested dictionary",  list((parser.getValuesRecursively(fuzzKeyMiner()))) , "\n")
+            weirdyaml = fuzzWeirdYAML()
+
+            ValidK8SYaml = parser.checkIfValidK8SYaml(weirdyaml)
         except Exception as e:
-            errorList.append("getValuesRecursively: " +  str(e))
-            print("\n2. Fuzzing getValuesRecursively with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
-        
-        errorList3 = []
+            errorList.append("checkIfValidK8SYaml with input of "+ str(weirdyaml) + "  ERROR IS:   " +   str(e))
+
         try:
             weirdyaml = fuzzWeirdYAML()
             ymlAsString = parser.readYAMLAsStr(weirdyaml)
-            print("\n3. Fuzzing readYAMALAsStr with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(ymlAsString) , "\n")
         except Exception as e:
-            errorList.append("readYAMALAsStr: " +  str(e))
-            print("\n3. Fuzzing readYAMALAsStr with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
+            errorList.append("readYAMALAsStr with input of "+ str(weirdyaml) + "  ERROR IS:   " +   str(e))
         
-        errorList4 = []
         try:
             weirdyaml = fuzzWeirdYAML()
             initial_comment = parser.count_initial_comment_line(weirdyaml)
-            print("\n4. Fuzzing count_initial_comment_line with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(initial_comment) , "\n")
         except Exception as e:
-            errorList.append("count_initial_comment_line: " +  str(e))
-            print("\n4. Fuzzing count_initial_comment_line with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
+            errorList.append("count_initial_comment_line with input of "+ str(weirdyaml) + "  ERROR IS:   " +   str(e))
         
-        errorList5 = []
         try:
             weirdyaml = fuzzWeirdYAML()
             SingleDict = parser.getSingleDict4MultiDocs(weirdyaml)
-            print("\n5. Fuzzing getSingleDict4MultiDocs with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(SingleDict) , "\n")
         except Exception as e:
-            errorList.append("getSingleDict4MultiDocs: " + str(e))
-            print("\n5. Fuzzing getSingleDict4MultiDocs with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
+            errorList.append("getSingleDict4MultiDocs with input of " + str(weirdyaml) + "  ERROR IS:   " +  str(e))
 
-    '''
-    try:
-        weirdyaml = fuzzWeirdYAML()
-
-       
-        print("\n6. Fuzzing readYAMLAsStr with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(keyMiner) , "\n")
-    except Exception as e:
-        errorList.append("checkIfWeirdYAML: " + e)
-        print("\n6. Fuzzing readYAMLAsStr with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
-  
-    try:
-        weirdyaml = fuzzWeirdYAML()
-
-        ValidK8SYaml = parser.checkIfValidK8SYaml(weirdyaml)
-        print("\n7. Fuzzing checkIfValidK8SYaml with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(ValidK8SYaml) , "\n")
-    except Exception as e:
-        print("\n7. Fuzzing checkIfValidK8SYaml with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
-  
-
-    keyMiner = parser.readYAMLAsStr(weirdyaml)
     for i in range(len(errorList)):
-        print("\n"+errorList[i])
-    print("\n\n\nEnd of error list")
-    '''
-
+        print("\n\nError found in method: "+errorList[i])
+    print("\n\n\n****End of error list****")
 
 
 if __name__=='__main__':
