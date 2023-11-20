@@ -1,15 +1,23 @@
-name: Fuzzing Build
+name: Python application
 
 on:
   push:
-    branches: [ slikube-enhancement, master, Fuzzing ]
+    branches: [ "main", "Fuzzing" ]
   pull_request:
-     branches: [ master ]
+    branches: [ "main", "Fuzzing" ]
+
 
 jobs:
-  Fuzzing-Methods:
+  build:
+
     runs-on: ubuntu-latest
-    Steps:
-    - name: Fuzzing methods to find errors.
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Fuzz methods
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Fuzzing methods
       run: |
-        python fuzz.py
+        python3 fuzz.py
