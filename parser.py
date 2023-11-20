@@ -15,6 +15,7 @@ import re
 import subprocess
 import os
 import logger
+from mrcnn.model import log # added to fix name log not found 
 
 #update basepath
 base_path = r" "
