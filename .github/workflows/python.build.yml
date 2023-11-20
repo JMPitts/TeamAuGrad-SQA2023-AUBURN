@@ -2,7 +2,7 @@ name: Build KubeTaint
 
 on:
   push:
-    branches: [ slikube-enhancement, master ]
+    branches: [ slikube-enhancement, master, Fuzzing ]
   pull_request:
      branches: [ master ]
 
