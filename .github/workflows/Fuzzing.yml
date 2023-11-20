@@ -1,4 +1,4 @@
-name: Fuzz Build
+name: Fuzzing Build
 
 on:
   push:
@@ -7,10 +7,9 @@ on:
      branches: [ master ]
 
 jobs:
-  build:
-
+  Fuzzing-Methods:
     runs-on: ubuntu-latest
-
+    Steps:
     - name: Fuzzing methods to find errors.
       run: |
         python fuzz.py
