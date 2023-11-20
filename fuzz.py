@@ -1,4 +1,4 @@
-
+## updated fuzz.py
 ## fuzzer to fuzz methods in parser.py
 import parser
 import random 
