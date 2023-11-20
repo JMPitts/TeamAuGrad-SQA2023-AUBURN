@@ -16,7 +16,7 @@ import subprocess
 import os
 import logger
 import logging
- # added to fix name log not found 
+ 
 
 #update basepath
 base_path = r" "
