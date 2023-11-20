@@ -71,8 +71,8 @@ def simpleFuzzer():
 
     for i in range(5):
 
-        
-        errorList1 = []
+
+        errorList = []
         try:
             weirdyaml = fuzzWeirdYAML()
             weirdyaml_result = parser.checkIfWeirdYAML(weirdyaml)
@@ -116,16 +116,16 @@ def simpleFuzzer():
             errorList.append("getSingleDict4MultiDocs: " + str(e))
             print("\n5. Fuzzing getSingleDict4MultiDocs with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
 
-    ''' 
+    '''
     try:
         weirdyaml = fuzzWeirdYAML()
 
-        keyMiner = parser.keyMiner(fuzzKeyMiner(),getJunk())
-        print("\n6. Fuzzing keyMiner with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(keyMiner) , "\n")
+       
+        print("\n6. Fuzzing readYAMLAsStr with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(keyMiner) , "\n")
     except Exception as e:
-         errorList.append("checkIfWeirdYAML: " + e)
-        print("\n6. Fuzzing keyMiner with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
-
+        errorList.append("checkIfWeirdYAML: " + e)
+        print("\n6. Fuzzing readYAMLAsStr with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
+  
     try:
         weirdyaml = fuzzWeirdYAML()
 
@@ -133,11 +133,13 @@ def simpleFuzzer():
         print("\n7. Fuzzing checkIfValidK8SYaml with ", str(weirdyaml) , "\nResult: is valid yaml " ,  str(ValidK8SYaml) , "\n")
     except Exception as e:
         print("\n7. Fuzzing checkIfValidK8SYaml with ", str(weirdyaml) , "\n\nException generated: " ,  str(e) , "\n\n")
-    '''
+  
+
+    keyMiner = parser.readYAMLAsStr(weirdyaml)
     for i in range(len(errorList)):
         print("\n"+errorList[i])
     print("\n\n\nEnd of error list")
-
+    '''
 
 
 
