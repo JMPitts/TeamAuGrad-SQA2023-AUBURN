@@ -17,4 +17,6 @@ Setup Github / Git Hooks - Jonathan Pitts
 Integrate Fuzz - William LeMaster  
 Integrate Forensics - Mike Blakley   
 
-
+## Links   
+[Project Report - REPO.md](https://github.com/JMPitts/TeamAuGrad-SQA2023-AUBURN/blob/main/REPO.md)   
+[Project Screenshots - /Screenshots](https://github.com/JMPitts/TeamAuGrad-SQA2023-AUBURN/tree/main/Screenshots)    
