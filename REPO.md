@@ -27,6 +27,7 @@ Fuzzing implementation steps:
 - created a workflow file in order to implement the fuzzing when a new push or pull is done.
 
 Lessons Learned:
+    
     I learned that Fuzzing is an important way to ensure you have a stable and safe application. I was also able to learn that it can help you catch any new errors you might introduce after the initial tests by implementing it through GitHub actions.
   
 ## Forensics
