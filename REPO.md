@@ -16,6 +16,19 @@ The Git Hook information can be found in the /GitHooksFiles folder in the reposi
 
 ## Fuzz
 
+This was valuable practice in implementing Fuzzing into a Python application via GitHub actions.
+
+Fuzzing implementation steps:
+- created a method to return a random integer, float, or None type.
+- created a method that returns a random YAML file name from blns.json
+- created a method that returns randomly nested dictionaries filled with random data types.
+- passed the randomly generated data to several methods in parser.py. This is repeated 5 times.
+- display the errors caught using try exception blocks.
+- created a workflow file in order to implement the fuzzing when a new push or pull is done.
+
+#Lessons Learned:
+    I learned that Fuzzing is an important way to ensure you have a stable and safe application. I was also able to learn that it can help you catch any new errors you might introduce after the initial tests by implementing it through GitHub actions.
+  
 ## Forensics
 
 This was a valuable exercise in determining 'what to log' in an application.
