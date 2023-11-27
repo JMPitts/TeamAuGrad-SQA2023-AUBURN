@@ -28,7 +28,7 @@ Fuzzing implementation steps:
 
 Lessons Learned:
     
-    I learned that Fuzzing is an important way to ensure you have a stable and safe application. I was also able to learn that it can help you catch any new errors you might introduce after the initial tests by implementing it through GitHub actions.
+I learned that Fuzzing is an important way to ensure you have a stable and safe application. I was also able to learn that it can help you catch any new errors you might introduce after the initial tests by implementing it through GitHub actions.
   
 ## Forensics
 
